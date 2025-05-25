@@ -44,7 +44,7 @@ final BookModel bookModel;
         const SizedBox(height: 35),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 38),
-          child: BooksAction(),
+          child: BooksAction(bookModel: bookModel,),
         ),
       ],
     );
