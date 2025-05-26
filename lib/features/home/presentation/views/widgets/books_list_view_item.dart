@@ -16,18 +16,19 @@ final BookModel bookModel;
         GoRouter.of(context).push('/bookDetailsView', extra: bookModel);
       },
       child: SizedBox(
-        height: 110,
+        height: 115,
         child: Row(
           children: [
           CustomBookImage(imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ?? '',),
         const SizedBox(width: 30,),
         Expanded(
           child: Column(
+            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * .5,
-                child: Text(bookModel.volumeInfo.title!,
+                child: Text(bookModel.volumeInfo.title ?? 'No Title',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: Styles.textStyle20.copyWith(
@@ -35,10 +36,10 @@ final BookModel bookModel;
                 ),),
               ),
               const SizedBox(height: 2),
-              Text(bookModel.volumeInfo.authors![0],
-              style: Styles.textStyle14.copyWith(
-            
-          ),
+              Text(bookModel.volumeInfo.authors?[0] ?? 'No Author',
+              style: Styles.textStyle14.copyWith( ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

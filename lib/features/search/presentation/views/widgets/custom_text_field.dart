@@ -1,5 +1,7 @@
 import 'package:bookly_app/core/utils/assets.dart';
+import 'package:bookly_app/features/search/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomSearchTextField extends StatelessWidget {
@@ -8,6 +10,11 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: BlocProvider.of<SearchCubit>(context).searchController,
+      onChanged: (value) {
+        BlocProvider.of<SearchCubit>(context).searchController.text=value;
+        BlocProvider.of<SearchCubit>(context).fetchSearchedBooks();
+      },
       decoration: InputDecoration(
         enabledBorder: textFieldOutlindTnputBorder(),
         focusedBorder: textFieldOutlindTnputBorder(),
@@ -19,7 +26,19 @@ class CustomSearchTextField extends StatelessWidget {
               width: 25,
               height: 25,
             ),
-        ))
+            
+        )),
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(onPressed: (){
+            BlocProvider.of<SearchCubit>(context).searchController.clear();
+            BlocProvider.of<SearchCubit>(context).fetchSearchedBooks();
+            
+          }, icon: Opacity(
+            opacity: .8,
+            child: Icon(Icons.close, color: Colors.white, size: 25,),
+          )),
+        ),
       ),
     );
   }

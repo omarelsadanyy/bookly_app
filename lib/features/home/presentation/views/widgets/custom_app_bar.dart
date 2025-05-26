@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(onPressed: (){
-            GoRouter.of(context).go('/SearchView');
+            GoRouter.of(context).push(AppRouter.kSearchView);
           }, icon:  SvgPicture.asset(
             AssetsData.serachIcon,
             width: 25,

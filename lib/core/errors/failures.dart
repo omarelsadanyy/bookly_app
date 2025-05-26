@@ -40,7 +40,7 @@ class ServerFailure extends Failures {
   factory ServerFailure.fromResponse(int statueCode,dynamic response){
     
     if(statueCode == 400 || statueCode == 401 || statueCode == 403){
-      return ServerFailure('Authentication Failure'); 
+      return ServerFailure('Authentication Failure');
     } else if(statueCode == 404){
       return ServerFailure('Your request not found, please try again later!');
     } else if(statueCode == 500){
